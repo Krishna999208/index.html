@@ -109,6 +109,33 @@
         const db = getFirestore(app);
 
         window.placeOrder = async function(product) {
+    const customer = prompt('Apna Naam likhein:');
+    if (!customer) return;
+
+    const phone = prompt('Apna Mobile Number likhein:');
+    if (!phone) return;
+
+    const address = prompt('Apna Pura Address (Ghar no, Gali, Area) likhein:');
+    if (!address) {
+        alert('Address ke bina order nahi ho sakta!');
+        return;
+    }
+
+    try {
+        await addDoc(collection(db, 'orders'), {
+            product: product,
+            customer: customer,
+            phone: phone,
+            address: address,
+            status: 'Pending',
+            timestamp: new Date()
+        });
+        alert('Mubarak ho! Aapka order address ke sath save ho gaya hai.');
+    } catch (e) {
+        console.error('Error: ', e);
+    }
+};
+        = async function(product) {
             const customer = prompt('Enter your name:');
             if (customer) {
                 await addDoc(collection(db, 'orders'), {
