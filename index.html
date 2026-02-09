@@ -3,98 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Smart Tech Hub | Purulia Official Store</title>
+    <title>Krishna Fitness | Professional Training & Supplements</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Urbanist', sans-serif; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .admin-dark { background-color: #020617; color: white; }
-        .gold-btn { background: linear-gradient(135deg, #FFD700 0%, #ca8a04 100%); color: #020617; }
-        .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); }
-        @media print { .no-print { display: none !important; } .print-only { display: block !important; } .bill { border: 2px solid #000; padding: 20px; } }
+        body { font-family: 'Urbanist', sans-serif; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; background-color: #020617; color: #f8fafc; }
+        .glass-nav { background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .neon-accent { color: #bef264; } /* Neon Green */
+        .neon-bg { background-color: #bef264; color: #020617; }
+        .neon-border { border: 1px solid rgba(190, 242, 100, 0.3); }
+        .plan-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.05); }
+        .plan-card:hover { transform: translateY(-10px); border-color: #bef264; box-shadow: 0 0 30px rgba(190, 242, 100, 0.1); }
+        @media print { .no-print { display: none !important; } .print-only { display: block !important; color: black; } .bill { border: 2px solid #000; padding: 25px; background: white; } }
         .print-only { display: none; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .animate-up { animation: fadeInUp 0.6s ease-out forwards; }
+        input[type="file"]::file-selector-button { background: #bef264; border: none; padding: 8px 16px; border-radius: 12px; font-weight: bold; cursor: pointer; color: #020617; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 overflow-x-hidden">
+<body class="overflow-x-hidden">
 
     <!-- NAVIGATION -->
-    <header class="sticky top-0 z-50 glass px-6 py-4 flex justify-between items-center no-print">
-        <div class="flex items-center gap-3 cursor-pointer group" id="admin-gate">
-            <div class="bg-[#020617] p-2.5 rounded-2xl text-[#FFD700] shadow-lg group-active:scale-90 transition">
+    <header class="sticky top-0 z-50 glass-nav px-6 py-4 flex justify-between items-center no-print">
+        <div class="flex items-center gap-3 cursor-pointer group" id="admin-trigger">
+            <div class="bg-[#bef264] p-2.5 rounded-2xl text-[#020617] shadow-[0_0_15px_rgba(190,242,100,0.4)] group-active:scale-90 transition">
                 <i class="fa-solid fa-bolt-lightning text-xl"></i>
             </div>
             <div>
-                <h1 class="text-2xl font-bold tracking-tighter text-[#020617] uppercase">Smart<span class="text-yellow-600">Tech</span></h1>
-                <p class="text-[8px] font-bold text-slate-400 tracking-[0.3em] uppercase -mt-1">Hub Purulia</p>
+                <h1 class="text-2xl font-black tracking-tighter uppercase leading-none">KRISHNA<br><span class="neon-accent">FITNESS</span></h1>
             </div>
         </div>
-        <div class="relative cursor-pointer bg-white p-3 rounded-full shadow-md border border-slate-100" onclick="openCart()">
-            <i class="fa-solid fa-cart-shopping text-xl text-slate-700"></i>
-            <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center border-2 border-white font-bold">0</span>
+        <div class="relative cursor-pointer bg-white/5 p-3 rounded-full border border-white/10" onclick="toggleCart()">
+            <i class="fa-solid fa-dumbbell text-xl neon-accent"></i>
+            <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center border-2 border-[#020617] font-bold">0</span>
         </div>
     </header>
 
-    <!-- MAIN STORE FRONT -->
+    <!-- CUSTOMER INTERFACE -->
     <div id="customer-ui" class="no-print">
-        <section class="px-6 py-16 text-center bg-white">
-            <span class="bg-indigo-50 text-indigo-700 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-indigo-100">Premium Tech Collection</span>
-            <h2 class="text-5xl font-bold mt-6 tracking-tight leading-tight">Elite Gadgets. <br><span class="text-indigo-600">Unbeatable Price.</span></h2>
-            <p class="mt-4 text-slate-400 text-sm max-w-xs mx-auto italic">Direct Order to Gmail with Instant WhatsApp Confirmation.</p>
+        <!-- Hero Section -->
+        <section class="px-6 py-20 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full"></div>
+            <span class="neon-border neon-accent px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest bg-white/5">Unleash Your Potential</span>
+            <h2 class="text-6xl font-black mt-8 tracking-tighter leading-none animate-up">TRANSFORM<br>YOUR <span class="neon-accent">BODY.</span></h2>
+            <p class="mt-6 text-slate-400 text-sm max-w-xs mx-auto">Get customized workout plans and premium supplements delivered to your doorstep.</p>
         </section>
 
-        <main id="store-grid" class="px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto"></main>
+        <!-- Plans Grid -->
+        <main id="fitness-grid" class="px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+            <!-- Loading state -->
+            <div class="col-span-full text-center py-20 text-slate-500 italic">Preparing your fitness journey...</div>
+        </main>
     </div>
 
-    <!-- CHECKOUT MODAL -->
-    <div id="cart-modal" class="fixed inset-0 z-[100] hidden bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 no-print">
-        <div class="bg-white w-full max-w-md rounded-t-[3rem] sm:rounded-[2.5rem] p-10 shadow-2xl animate-up">
+    <!-- CART/ENROLL MODAL -->
+    <div id="cart-modal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4 no-print">
+        <div class="bg-[#0f172a] w-full max-w-md rounded-t-[3rem] sm:rounded-[2.5rem] p-10 shadow-2xl animate-up border border-white/5">
             <div class="flex justify-between items-center mb-8">
-                <h2 class="text-2xl font-bold">Complete Order</h2>
-                <button onclick="closeCart()" class="bg-slate-100 p-3 rounded-full text-slate-400"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <h2 class="text-2xl font-black italic uppercase">Enroll Now</h2>
+                <button onclick="toggleCart()" class="bg-white/5 p-3 rounded-full text-slate-400"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <div class="space-y-5">
-                <input type="text" id="c-name" class="w-full p-5 bg-slate-50 border border-slate-200 rounded-[1.5rem] outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Full Name">
-                <input type="number" id="c-phone" class="w-full p-5 bg-slate-50 border border-slate-200 rounded-[1.5rem] outline-none focus:ring-2 focus:ring-indigo-500" placeholder="10 Digit Number">
-                <textarea id="c-addr" rows="3" class="w-full p-5 bg-slate-50 border border-slate-200 rounded-[1.5rem] outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Full Delivery Address (Purulia, WB)..."></textarea>
-                <button onclick="sendOrder()" class="w-full bg-indigo-600 text-white py-6 rounded-[1.5rem] font-bold text-lg shadow-xl flex items-center justify-center gap-3 active:scale-95 transition">Place Gmail Order <i class="fa-solid fa-envelope text-2xl"></i></button>
+                <input type="text" id="cust-name" class="w-full p-5 bg-white/5 border border-white/10 rounded-3xl outline-none focus:border-[#bef264]" placeholder="Full Name">
+                <input type="number" id="cust-phone" class="w-full p-5 bg-white/5 border border-white/10 rounded-3xl outline-none focus:border-[#bef264]" placeholder="10 Digit Number">
+                <textarea id="cust-goal" rows="3" class="w-full p-5 bg-white/5 border border-white/10 rounded-3xl outline-none focus:border-[#bef264]" placeholder="Your Fitness Goal (Weight loss, Muscle gain etc.)"></textarea>
+                <button onclick="submitFitnessOrder()" class="w-full neon-bg py-6 rounded-3xl font-black text-lg shadow-[0_10px_30px_rgba(190,242,100,0.3)] flex items-center justify-center gap-3 active:scale-95 transition uppercase italic">Submit to Trainer <i class="fa-solid fa-envelope text-2xl"></i></button>
             </div>
         </div>
     </div>
 
     <!-- ADMIN PANEL -->
-    <div id="admin-ui" class="hidden min-h-screen admin-dark p-8 no-print">
+    <div id="admin-ui" class="hidden min-h-screen bg-black p-6 no-print">
         <div class="max-w-5xl mx-auto">
-            <div class="flex justify-between items-center mb-10 border-b border-slate-800 pb-8">
-                <h2 class="text-3xl font-bold text-yellow-500">Master Control</h2>
-                <button onclick="location.reload()" class="bg-red-500/20 text-red-500 px-6 py-2.5 rounded-xl border border-red-500/30 font-bold hover:bg-red-500 hover:text-white transition">Log Out</button>
+            <div class="flex justify-between items-center mb-10 border-b border-white/10 pb-8">
+                <div>
+                    <h2 class="text-3xl font-black text-[#bef264] italic">TRAINER DASHBOARD</h2>
+                    <p class="text-slate-500 text-[10px] uppercase font-bold tracking-widest mt-1">Manage Trainees & Plans ✅</p>
+                </div>
+                <button onclick="location.reload()" class="bg-red-500/10 text-red-500 px-6 py-2.5 rounded-xl border border-red-500/20 font-bold uppercase text-xs">Exit</button>
             </div>
-            <div class="flex gap-10 mb-8 font-bold border-b border-slate-800 text-xs uppercase tracking-widest">
-                <button onclick="tab('o')" id="tab-o" class="pb-4 text-yellow-500 border-b-2 border-yellow-500">Live Orders</button>
-                <button onclick="tab('s')" id="tab-s" class="pb-4 text-slate-500">Inventory</button>
+            
+            <div class="flex gap-10 mb-8 font-bold border-b border-white/10 text-[10px] uppercase tracking-widest">
+                <button onclick="tab('o')" id="t-o" class="pb-4 text-[#bef264] border-b-2 border-[#bef264]">Enrollments</button>
+                <button onclick="tab('s')" id="t-s" class="pb-4 text-slate-500">Gym Store</button>
             </div>
-            <div id="sec-o" class="space-y-6">
-                <div id="admin-orders" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+
+            <!-- Orders Section -->
+            <div id="sec-orders" class="space-y-6">
+                <div id="orders-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             </div>
-            <div id="sec-s" class="hidden">
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10 mb-8">
-                    <h4 class="text-xl font-bold text-yellow-500 mb-6">Add New Item</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <input type="text" id="p-name" class="bg-white/10 p-5 rounded-2xl outline-none focus:ring-1 focus:ring-yellow-500" placeholder="Product Name">
-                        <input type="number" id="p-price" class="bg-white/10 p-5 rounded-2xl outline-none focus:ring-1 focus:ring-yellow-500" placeholder="Price (₹)">
-                        <input type="text" id="p-img" class="bg-white/10 p-5 rounded-2xl outline-none focus:ring-1 focus:ring-yellow-500" placeholder="Image URL">
-                        <button onclick="addItem()" class="sm:col-span-2 gold-btn py-5 rounded-2xl font-bold text-lg active:scale-95 transition">Save to Cloud ✅</button>
+
+            <!-- Store/Inventory Section -->
+            <div id="sec-store" class="hidden">
+                <div class="bg-white/5 p-10 rounded-[2.5rem] border border-white/10 mb-10">
+                    <h4 class="text-xl font-bold text-[#bef264] mb-8">Add New Plan/Supp</h4>
+                    <div class="grid grid-cols-1 gap-6">
+                        <input type="text" id="add-name" class="bg-white/5 p-5 rounded-2xl border border-white/10 outline-none" placeholder="Plan Title (e.g. 3 Month Fat Loss)">
+                        <input type="number" id="add-price" class="bg-white/5 p-5 rounded-2xl border border-white/10 outline-none" placeholder="Price (₹)">
+                        <div class="bg-white/5 p-6 rounded-2xl border border-dashed border-white/20">
+                            <label class="block text-[10px] uppercase font-bold text-slate-400 mb-3">Add Poster/Photo (Gallery)</label>
+                            <input type="file" id="add-file" accept="image/*" class="w-full text-xs text-slate-400">
+                        </div>
+                        <button onclick="uploadFitnessItem()" id="btn-save" class="neon-bg py-6 rounded-3xl font-black text-lg active:scale-95 transition uppercase italic">Upload to Store ✅</button>
                     </div>
                 </div>
-                <div id="admin-inventory" class="grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
+                <div id="admin-inventory-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
         </div>
     </div>
 
+    <!-- INVOICE -->
     <div id="print-view" class="print-only"></div>
 
     <script type="module">
@@ -106,131 +125,158 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const appKey = "smart-tech-hub-v7-final";
-        const orderCol = collection(db, 'artifacts', appKey, 'public', 'data', 'orders');
-        const productCol = collection(db, 'artifacts', appKey, 'public', 'data', 'products');
+        const appKey = "krishna-fitness-v1";
+        const oCol = collection(db, 'artifacts', appKey, 'public', 'data', 'orders');
+        const pCol = collection(db, 'artifacts', appKey, 'public', 'data', 'products');
 
-        let cart = [];
-        let clicks = 0;
-        const myEmail = "ojhakrishna066@gmail.com";
-        const adminPass = "9641882031";
+        let cartItems = [];
+        let secretClicks = 0;
+        const myMail = "ojhakrishna066@gmail.com";
+        const myPass = "9641882031";
 
-        // SAMPLE DATA FOR NEW STORES
-        const sampleProducts = [
-            { name: "iPhone 15 Pro", price: 134900, img: "https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&q=80&w=400", time: new Date() },
-            { name: "MacBook Air M2", price: 94900, img: "https://images.unsplash.com/photo-1611186871348-b1ec696e5237?auto=format&fit=crop&q=80&w=400", time: new Date() },
-            { name: "AirPods Pro 2", price: 24900, img: "https://images.unsplash.com/photo-1588423770574-f199baae60e1?auto=format&fit=crop&q=80&w=400", time: new Date() }
+        // SAMPLE FITNESS DATA
+        const samplePlans = [
+            { name: "3-Month Fat Loss", price: 2999, img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500", time: new Date() },
+            { name: "Muscle Build Pro", price: 4999, img: "https://images.unsplash.com/photo-1581009146145-b5ef03a7403f?w=500", time: new Date() },
+            { name: "Whey Protein 2KG", price: 6500, img: "https://images.unsplash.com/photo-1593094839855-d56657465544?w=500", time: new Date() }
         ];
 
         signInAnonymously(auth).then(async () => { 
-            const qSnap = await getDocs(productCol);
+            const qSnap = await getDocs(pCol);
             if(qSnap.empty) {
-                for(let p of sampleProducts) { await addDoc(productCol, p); }
+                for(let p of samplePlans) { await addDoc(pCol, p); }
             }
             loadShop(); 
         });
 
-        document.getElementById('admin-gate').onclick = () => {
-            clicks++;
-            if(clicks === 5) {
-                if(prompt("Admin Access Key:") === adminPass) {
+        document.getElementById('admin-trigger').onclick = () => {
+            secretClicks++;
+            if(secretClicks === 5) {
+                if(prompt("Trainer Password:") === myPass) {
                     document.getElementById('customer-ui').classList.add('hidden');
                     document.getElementById('admin-ui').classList.remove('hidden');
                     loadAdmin();
                 }
             }
-            setTimeout(() => clicks = 0, 3000);
+            setTimeout(() => secretClicks = 0, 3000);
         };
 
         window.loadShop = () => {
-            onSnapshot(query(productCol, orderBy("time", "desc")), (snap) => {
-                const grid = document.getElementById('store-grid'); grid.innerHTML = "";
+            onSnapshot(query(pCol, orderBy("time", "desc")), (snap) => {
+                const grid = document.getElementById('fitness-grid'); grid.innerHTML = "";
                 snap.forEach(d => {
                     const p = d.data();
                     grid.innerHTML += `
-                        <div class="bg-white p-8 rounded-[3rem] product-card border border-slate-100 animate-up">
-                            <div class="h-56 bg-slate-50 rounded-[2.5rem] mb-6 overflow-hidden flex items-center justify-center">
-                                <img src="${p.img}" class="object-cover w-full h-full" onerror="this.src='https://placehold.co/400x300?text=Tech+Hub'">
+                        <div class="p-6 rounded-[2.5rem] plan-card animate-up">
+                            <div class="h-64 bg-white/5 rounded-[2rem] mb-6 overflow-hidden relative">
+                                <img src="${p.img}" class="object-cover w-full h-full opacity-80" onerror="this.src='https://placehold.co/400x500?text=Fitness+Hub'">
+                                <div class="absolute bottom-4 left-4">
+                                    <span class="bg-[#bef264] text-[#020617] text-[10px] font-black px-3 py-1 rounded-full uppercase">Verified Plan</span>
+                                </div>
                             </div>
-                            <h3 class="text-2xl font-bold px-2">${p.name}</h3>
-                            <div class="flex justify-between items-center mt-8 px-2">
-                                <span class="text-3xl font-extrabold tracking-tighter text-slate-900">₹${p.price.toLocaleString()}</span>
-                                <button onclick="addToCart('${p.name}', ${p.price})" class="bg-[#020617] text-[#FFD700] px-10 py-4 rounded-3xl font-bold shadow-xl active:scale-90 transition">Buy</button>
+                            <h3 class="text-2xl font-black italic px-2 uppercase tracking-tight">${p.name}</h3>
+                            <div class="mt-8 flex justify-between items-center px-2">
+                                <span class="text-3xl font-black neon-accent tracking-tighter">₹${p.price}</span>
+                                <button onclick="enroll('${p.name}', ${p.price})" class="bg-white text-black px-8 py-4 rounded-2xl font-black text-xs uppercase italic active:scale-95 transition">Enroll</button>
                             </div>
                         </div>`;
                 });
             });
         };
 
-        window.addToCart = (n, p) => { cart.push({n, p}); document.getElementById('cart-count').innerText = cart.length; openCart(); };
-        window.openCart = () => { if(cart.length > 0) document.getElementById('cart-modal').classList.remove('hidden'); };
-        window.closeCart = () => document.getElementById('cart-modal').classList.add('hidden');
+        window.enroll = (n, p) => { cartItems.push({n, p}); document.getElementById('cart-badge').innerText = cartItems.length; toggleCart(); };
+        window.toggleCart = () => { if(cartItems.length > 0) document.getElementById('cart-modal').classList.toggle('hidden'); };
 
-        window.sendOrder = async () => {
-            const name = document.getElementById('c-name').value.trim();
-            const phone = document.getElementById('c-phone').value.trim();
-            const addr = document.getElementById('c-addr').value.trim();
-            if(phone.length !== 10 || addr.length < 15) return alert("Validation Error: Please enter 10 digit phone and full address!");
-            
-            const items = cart.map(i => i.n).join(", ");
-            const total = cart.reduce((a, b) => a + b.p, 0);
-            const body = `Name: ${name}%0APhone: ${phone}%0AAddress: ${addr}%0AItems: ${items}%0ATotal: ₹${total}`;
-            
-            window.location.href = `mailto:${myEmail}?subject=Order from ${name}&body=${body}`;
-            await addDoc(orderCol, { name, phone, address: addr, items, total, status: 'Pending', time: new Date() });
-            alert("Success! Gmail order drafted. Please click SEND. ✅");
+        window.submitFitnessOrder = async () => {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const goal = document.getElementById('cust-goal').value.trim();
+            if(phone.length !== 10 || goal.length < 10) return alert("Please enter 10 digit phone and your goal details!");
+
+            const items = cartItems.map(i => i.n).join(", ");
+            const total = cartItems.reduce((a, b) => a + b.p, 0);
+            const mailBody = `New Trainee Registration%0AName: ${name}%0APhone: ${phone}%0AFitness Goal: ${goal}%0AChosen Plan: ${items}%0AAmount: ₹${total}`;
+            window.location.href = `mailto:${myMail}?subject=New Fitness Registration - ${name}&body=${mailBody}`;
+
+            await addDoc(oCol, { name, phone, address: goal, items, total, status: 'Pending', time: new Date() });
+            alert("Application Sent to Trainer! Click SEND in Gmail to confirm. ✅");
             location.reload();
         };
 
         window.tab = (t) => {
-            document.getElementById('sec-o').classList.toggle('hidden', t !== 'o');
-            document.getElementById('sec-s').classList.toggle('hidden', t !== 's');
-            document.getElementById('tab-o').classList.toggle('text-yellow-500', t === 'o');
-            document.getElementById('tab-o').classList.toggle('border-yellow-500', t === 'o');
-            document.getElementById('tab-s').classList.toggle('text-yellow-500', t === 's');
-            document.getElementById('tab-s').classList.toggle('border-yellow-500', t === 's');
+            document.getElementById('sec-orders').classList.toggle('hidden', t !== 'o');
+            document.getElementById('sec-store').classList.toggle('hidden', t !== 's');
+            document.getElementById('t-o').classList.toggle('text-[#bef264]', t === 'o');
+            document.getElementById('t-o').classList.toggle('border-[#bef264]', t === 'o');
+            document.getElementById('t-s').classList.toggle('text-[#bef264]', t === 's');
+            document.getElementById('t-s').classList.toggle('border-[#bef264]', t === 's');
         };
 
-        window.addItem = async () => {
-            const n = document.getElementById('p-name').value;
-            const p = parseFloat(document.getElementById('p-price').value);
-            const i = document.getElementById('p-img').value;
-            if(!n || isNaN(p)) return alert("Error: Name and Price required!");
-            await addDoc(productCol, { name: n, price: p, img: i, time: new Date() });
-            alert("Added to inventory! ✅");
+        window.uploadFitnessItem = async () => {
+            const btn = document.getElementById('btn-save');
+            const n = document.getElementById('add-name').value;
+            const p = document.getElementById('add-price').value;
+            const fileInput = document.getElementById('add-file');
+
+            if(!n || !p || !fileInput.files[0]) return alert("Name, Price and Poster Image required!");
+
+            btn.innerText = "Optimizing... ⏳";
+            btn.disabled = true;
+
+            const reader = new FileReader();
+            reader.readAsDataURL(fileInput.files[0]);
+            reader.onload = () => {
+                const img = new Image();
+                img.src = reader.result;
+                img.onload = async () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 600;
+                    let width = img.width; let height = img.height;
+                    if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                    canvas.width = width; canvas.height = height;
+                    const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, width, height);
+                    const lowRes = canvas.toDataURL('image/jpeg', 0.6);
+
+                    try {
+                        await addDoc(pCol, { name: n, price: p, img: lowRes, time: new Date() });
+                        alert("Plan Added Successfully! ✅");
+                        location.reload();
+                    } catch(e) { alert("Error: Image too large!"); btn.innerText = "Upload to Store ✅"; btn.disabled = false; }
+                };
+            };
         };
 
-        window.confirmWA = (phone, name, id) => {
-            const msg = `Hello *${name}*,%0A%0AYour order at *Smart Tech Hub* has been confirmed! ✅%0A%0AWe are preparing your items for delivery soon. Thank you for choosing us! 🙏`;
+        window.confirmTrainee = (phone, name, id) => {
+            const msg = `Hello *${name}*,%0A%0AYour fitness registration at *Krishna Fitness* is CONFIRMED! ✅%0A%0AGet ready for the transformation. See you soon! 💪`;
             window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
             updateDoc(doc(db, 'artifacts', appKey, 'public', 'data', 'orders', id), { status: 'Confirmed' });
         };
 
         function loadAdmin() {
-            onSnapshot(query(orderCol, orderBy("time", "desc")), (snap) => {
-                const list = document.getElementById('admin-orders'); list.innerHTML = "";
+            onSnapshot(query(oCol, orderBy("time", "desc")), (snap) => {
+                const list = document.getElementById('orders-list'); list.innerHTML = "";
                 snap.forEach(dDoc => {
-                    const d = dDoc.data();
-                    const isConf = d.status === 'Confirmed';
+                    const o = dDoc.data();
+                    const isConf = o.status === 'Confirmed';
                     list.innerHTML += `
-                        <div class="bg-white/5 p-8 rounded-[2.5rem] border border-white/10">
-                            <div class="flex justify-between items-center mb-4">
-                                <h4 class="text-xl font-bold ${isConf ? 'text-green-400' : 'text-yellow-500'}">${d.name}</h4>
-                                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">${new Date(d.time.seconds*1000).toLocaleTimeString()}</span>
+                        <div class="bg-white/5 p-8 rounded-[2.5rem] border border-white/5 animate-up">
+                            <div class="flex justify-between items-center mb-6">
+                                <h4 class="text-2xl font-black italic uppercase ${isConf ? 'text-green-400' : 'neon-accent'}">${o.name}</h4>
+                                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">${new Date(o.time.seconds*1000).toLocaleTimeString()}</span>
                             </div>
-                            <p class="text-slate-300 text-sm mb-6"><i class="fa-solid fa-location-dot text-yellow-500 mr-2"></i> ${d.address}</p>
+                            <p class="text-slate-400 text-xs mb-6 uppercase tracking-widest leading-relaxed"><i class="fa-solid fa-bullseye neon-accent mr-2"></i> Goal: ${o.address}</p>
                             <div class="flex gap-4">
-                                <a href="tel:${d.phone}" class="flex-1 bg-blue-600 text-center py-4 rounded-2xl font-bold text-xs">Call Client</a>
-                                <button onclick="confirmWA('${d.phone}', '${d.name}', '${dDoc.id}')" class="flex-1 bg-green-500 py-4 rounded-2xl font-bold text-xs"><i class="fa-brands fa-whatsapp"></i> Confirm</button>
+                                <a href="tel:${o.phone}" class="flex-1 bg-blue-600/20 text-blue-400 text-center py-4 rounded-2xl font-black text-[10px] uppercase italic border border-blue-600/20">Call</a>
+                                <button onclick="confirmTrainee('${o.phone}', '${o.name}', '${dDoc.id}')" class="flex-1 bg-[#bef264] text-black py-4 rounded-2xl font-black text-[10px] uppercase italic">Confirm WA</button>
                             </div>
                         </div>`;
                 });
             });
-            onSnapshot(query(productCol, orderBy("time", "desc")), (snap) => {
-                const list = document.getElementById('admin-inventory'); list.innerHTML = "";
+            onSnapshot(query(pCol, orderBy("time", "desc")), (snap) => {
+                const list = document.getElementById('admin-product-list'); list.innerHTML = "";
                 snap.forEach(dDoc => {
                     const p = dDoc.data();
-                    list.innerHTML += `<div class="bg-white/5 p-4 rounded-xl border border-white/10 flex justify-between text-white items-center"><span>${p.name}</span><button onclick="deleteDoc(doc(db, 'artifacts', '${appKey}', 'public', 'data', 'products', '${dDoc.id}'))" class="text-red-500 p-2"><i class="fa-solid fa-trash-can"></i></button></div>`;
+                    list.innerHTML += `<div class="bg-white/5 p-5 rounded-2xl border border-white/10 flex justify-between items-center text-white"><div class="flex items-center gap-4"><img src="${p.img}" class="w-10 h-10 rounded-lg object-cover"><span class="text-xs font-bold">${p.name}</span></div><button onclick="deleteDoc(doc(db, 'artifacts', '${appKey}', 'public', 'data', 'products', '${dDoc.id}'))" class="text-red-500"><i class="fa-solid fa-trash-can"></i></button></div>`;
                 });
             });
         }
